@@ -199,6 +199,28 @@
       transform: translateY(-2px);
       box-shadow: 0 20px 40px rgba(0, 74, 173, 0.35);
     }
+    .btn.cta-highlight {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(120deg, rgba(0, 74, 173, 1), rgba(250, 145, 0, 0.95));
+      border-color: transparent;
+      color: var(--white);
+      box-shadow: 0 20px 48px rgba(0, 74, 173, 0.35);
+      animation: ctaPulse 4s ease-in-out infinite;
+    }
+    .btn.cta-highlight::before {
+      content: "";
+      position: absolute;
+      inset: -120% -30%;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: rotate(25deg);
+      animation: ctaSheen 5s linear infinite;
+      pointer-events: none;
+    }
+    .btn.cta-highlight:hover,
+    .btn.cta-highlight:focus {
+      box-shadow: 0 24px 58px rgba(0, 74, 173, 0.45);
+    }
     .btn-secondary {
       background: transparent;
       color: var(--sky);
@@ -564,25 +586,6 @@
     .mentor-bio {
       color: rgba(232, 240, 255, 0.85);
     }
-    .agenda-grid {
-      display: grid;
-      gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-    .agenda-card {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      padding: 1.6rem;
-      box-shadow: var(--shadow);
-      display: grid;
-      gap: 0.6rem;
-      border: 1px solid rgba(148, 163, 184, 0.12);
-    }
-    .agenda-note {
-      margin-top: 1.6rem;
-      font-weight: 600;
-      color: rgba(232, 240, 255, 0.75);
-    }
     .details-shell {
       display: block;
     }
@@ -838,15 +841,7 @@
       font-size: 0.95rem;
     }
     .sticky-footer .btn-primary {
-      background: var(--orange);
-      color: var(--ink);
-      border-color: transparent;
       min-width: 160px;
-      box-shadow: 0 14px 32px rgba(250, 145, 0, 0.35);
-    }
-    .sticky-footer .btn-primary:hover,
-    .sticky-footer .btn-primary:focus {
-      background: #ff9e1a;
     }
     .micro-cta {
       font-size: 0.95rem;
@@ -859,20 +854,6 @@
     }
     .pain-cta {
       margin: 2.5rem auto 0;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(120deg, rgba(0, 74, 173, 1), rgba(250, 145, 0, 0.95));
-      box-shadow: 0 20px 48px rgba(0, 74, 173, 0.35);
-      animation: ctaPulse 4s ease-in-out infinite;
-    }
-    .pain-cta::before {
-      content: "";
-      position: absolute;
-      inset: -120% -30%;
-      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-      transform: rotate(25deg);
-      animation: ctaSheen 5s linear infinite;
-      pointer-events: none;
     }
     @keyframes ctaPulse {
       0%, 100% {
@@ -958,7 +939,7 @@
       .hero-visual,
       .collage-track,
       .pain-card,
-      .pain-cta {
+      .btn.cta-highlight {
         animation: none !important;
       }
       .pain-card {
@@ -980,7 +961,7 @@
           <span class="badge orange">Only <span data-seat-pill>8</span> Seats</span>
         </div>
         <div class="hero-ctas">
-          <a class="btn btn-primary" data-cta="hero-primary" href="#register">Reserve My Seat</a>
+          <a class="btn btn-primary cta-highlight" data-cta="hero-primary" href="#register">Reserve My Seat</a>
           <a class="btn btn-secondary" data-cta="hero-secondary" href="#outcomes">See What You’ll Get</a>
         </div>
         <p class="hero-trust">Breakfast + lunch included • Secure checkout • Payment plans available</p>
@@ -1009,121 +990,44 @@
       <ul class="pains-list">
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
-            <span class="pain-card-inner pain-front">Does your bank balance shrink faster than sales hit your account?</span>
-            <span class="pain-card-inner pain-back">We trace every inflow and outflow so you see exactly where cash disappears—and build a flow that keeps more of it.</span>
-          </button>
-        </li>
-        <li class="pain-item">
-          <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">Are you still paying yourself last while everyone else gets paid first?</span>
-            <span class="pain-card-inner pain-back">We install Profit First-inspired guardrails that fund your pay before expenses without starving operations.</span>
+            <span class="pain-card-inner pain-back">You’ll learn a simple system to pay yourself first—without starving the business. We’ll help you redesign your cash routine so every dollar has a purpose, and your personal income becomes a non-negotiable priority.</span>
           </button>
         </li>
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">Is “growth” piling on chaos faster than it creates real freedom?</span>
-            <span class="pain-card-inner pain-back">We redesign how your business scales so added revenue expands margin, time, and control instead of stress.</span>
+            <span class="pain-card-inner pain-back">We’ll help you structure your business to grow with control, not confusion. You’ll learn how to focus on the right levers and eliminate the noise so growth starts creating freedom, not more fires to fight.</span>
           </button>
         </li>
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">Are you making big decisions with numbers you don’t fully trust?</span>
-            <span class="pain-card-inner pain-back">We build a simple, reliable scoreboard so every decision is grounded in numbers you can stand behind.</span>
+            <span class="pain-card-inner pain-back">You’ll leave with a process to finally trust your numbers. Our framework helps you see exactly what’s coming, what’s safe to spend, and how to make confident choices based on facts—not gut feelings.</span>
           </button>
         </li>
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">Does your team feel slammed while profit still stays flat?</span>
-            <span class="pain-card-inner pain-back">We pinpoint the work that drains margin and set a plan that aligns effort with the profit you expect.</span>
-          </button>
-        </li>
-        <li class="pain-item">
-          <button class="pain-card" type="button" aria-expanded="false">
-            <span class="pain-card-inner pain-front">Does pricing still feel like guesswork that leaves money on the table?</span>
-            <span class="pain-card-inner pain-back">We stress-test your offers and pricing so you charge confidently for the value you deliver.</span>
+            <span class="pain-card-inner pain-back">You’ll uncover the real reasons effort isn’t turning into results. We’ll help you identify bottlenecks, align your operations with profitability, and make sure your team’s hard work actually drives progress.</span>
           </button>
         </li>
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">Are you stuck saying “yes” to work that drains your energy and margin?</span>
-            <span class="pain-card-inner pain-back">We reset your filters so you protect capacity for clients and projects that fuel profit and momentum.</span>
+            <span class="pain-card-inner pain-back">We’ll show you how to define clear boundaries, price for value, and build a model that supports both your profit and your sanity. You’ll learn to say “yes” only to what truly moves your business forward.</span>
           </button>
         </li>
         <li class="pain-item">
           <button class="pain-card" type="button" aria-expanded="false">
             <span class="pain-card-inner pain-front">If nothing changed in 90 days, would the stress cost more than this investment?</span>
-            <span class="pain-card-inner pain-back">We leave you with a 30-60-90 action plan that turns the next quarter into measurable wins instead of more worry.</span>
+            <span class="pain-card-inner pain-back">This day is your chance to break that cycle. We’ll help you build the clarity, control, and confidence to finally stop spinning your wheels—and start running a business that serves you.</span>
           </button>
         </li>
       </ul>
-      <a class="btn btn-primary pain-cta" href="#register" data-cta="pains-inline">I’m ready to fix this</a>
+      <a class="btn btn-primary cta-highlight pain-cta" href="#register" data-cta="pains-inline">I’m ready to fix this</a>
     </section>
 
-    <section id="outcomes" class="container surface" aria-labelledby="outcomes-heading">
-      <div class="section-title">
-        <span class="section-kicker">What changes after one day</span>
-        <h2 id="outcomes-heading">In just one day, you’ll gain…</h2>
-      </div>
-      <div class="outcomes-grid">
-        <div>
-          <div class="outcome-accordions">
-            <article class="outcome-item">
-              <button class="outcome-toggle" aria-expanded="false">
-                <span>A clear plan to finally pay yourself first.</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
-              </button>
-              <div class="outcome-content" hidden>
-                <p>Map your revenue buckets, set owner's pay targets, and lock in a rhythm that funds your priorities before expenses hit.</p>
-              </div>
-            </article>
-            <article class="outcome-item">
-              <button class="outcome-toggle" aria-expanded="false">
-                <span>Clarity on the leaks silently draining profit.</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
-              </button>
-              <div class="outcome-content" hidden>
-                <p>Trace every dollar leaving your business, flag hidden subscriptions or bloated costs, and build simple guardrails to keep them visible.</p>
-              </div>
-            </article>
-            <article class="outcome-item">
-              <button class="outcome-toggle" aria-expanded="false">
-                <span>A smarter business model designed for sustainable growth.</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
-              </button>
-              <div class="outcome-content" hidden>
-                <p>Pressure-test your revenue streams, pricing, and delivery so growth scales margins and capacity instead of chaos.</p>
-              </div>
-            </article>
-            <article class="outcome-item">
-              <button class="outcome-toggle" aria-expanded="false">
-                <span>Focus on the few strategies that move the needle next.</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
-              </button>
-              <div class="outcome-content" hidden>
-                <p>Leave with a ruthless priority map that points your team toward the next three moves that matter—not a 40-item wish list.</p>
-              </div>
-            </article>
-            <article class="outcome-item">
-              <button class="outcome-toggle" aria-expanded="false">
-                <span>A simple action plan you can start this week.</span>
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
-              </button>
-              <div class="outcome-content" hidden>
-                <p>Translate the day into a 30-60-90 day rollout with milestones, accountability, and momentum baked in.</p>
-              </div>
-            </article>
-          </div>
-          <div class="mini-proof">
-            <span>⏱️ 1 day</span>
-            <span>🧑‍🤝‍🧑 8 owners max</span>
-            <span>✅ hands-on, not theory</span>
-          </div>
-        </div>
-        <div class="hero-visual" aria-hidden="true" style="min-height: 100%;">
-          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Coach leading a small group strategy session" loading="lazy" />
-        </div>
-      </div>
-    </section>
 
     <section id="mentors" class="container surface" aria-labelledby="mentors-heading">
       <div class="section-title">
@@ -1158,27 +1062,6 @@
       </div>
     </section>
 
-    <section id="agenda" class="container surface" aria-labelledby="agenda-heading">
-      <div class="section-title">
-        <span class="section-kicker">Your day, by design</span>
-        <h2 id="agenda-heading">What we’ll cover</h2>
-      </div>
-      <div class="agenda-grid">
-        <div class="agenda-card">
-          <h3>Morning</h3>
-          <p>Get crystal clear on your numbers, find the leaks, and set your first-year pay plan.</p>
-        </div>
-        <div class="agenda-card">
-          <h3>Midday</h3>
-          <p>Identify growth levers and choose where to focus for the next quarter.</p>
-        </div>
-        <div class="agenda-card">
-          <h3>Afternoon</h3>
-          <p>Redesign your model for profit and build your 30–90 day plan.</p>
-        </div>
-      </div>
-      <p class="agenda-note">Small group work. You’ll work on your business, not sit through slide shows.</p>
-    </section>
 
     <section id="details" class="container surface" aria-labelledby="details-heading">
       <div class="section-title">
@@ -1201,13 +1084,13 @@
           <div class="details-countdown" aria-live="polite">
             <strong>Clock is ticking</strong>
             <span id="details-countdown">Countdown loading…</span>
-            <a class="btn btn-primary" href="#register" data-cta="details-inline">Reserve My Seat</a>
+            <a class="btn btn-primary cta-highlight" href="#register" data-cta="details-inline">Reserve My Seat</a>
           </div>
           <p class="micro-cta">Questions? Email <a href="mailto:support@triumphbusinesssolutions.pro">support@triumphbusinesssolutions.pro</a> or call <a href="tel:14407326647">440-732-6647</a></p>
         </div>
       </div>
       <div class="details-cta">
-        <a class="btn btn-primary" href="#register" data-cta="details">Save My Seat (Only 8 Available)</a>
+        <a class="btn btn-primary cta-highlight" href="#register" data-cta="details">Save My Seat (Only 8 Available)</a>
       </div>
     </section>
 
@@ -1329,6 +1212,73 @@
       </div>
     </section>
 
+    <section id="outcomes" class="container surface" aria-labelledby="outcomes-heading">
+      <div class="section-title">
+        <span class="section-kicker">What changes after one day</span>
+        <h2 id="outcomes-heading">In just one day, you’ll gain…</h2>
+      </div>
+      <div class="outcomes-grid">
+        <div>
+          <div class="outcome-accordions">
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A clear plan to finally pay yourself first.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Map your revenue buckets, set owner's pay targets, and lock in a rhythm that funds your priorities before expenses hit.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>Clarity on the leaks silently draining profit.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Trace every dollar leaving your business, flag hidden subscriptions or bloated costs, and build simple guardrails to keep them visible.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A smarter business model designed for sustainable growth.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Pressure-test your revenue streams, pricing, and delivery so growth scales margins and capacity instead of chaos.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>Focus on the few strategies that move the needle next.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Leave with a ruthless priority map that points your team toward the next three moves that matter—not a 40-item wish list.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A simple action plan you can start this week.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Translate the day into a 30-60-90 day rollout with milestones, accountability, and momentum baked in.</p>
+              </div>
+            </article>
+          </div>
+          <div class="mini-proof">
+            <span>⏱️ 1 day</span>
+            <span>🧑‍🤝‍🧑 8 owners max</span>
+            <span>✅ hands-on, not theory</span>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true" style="min-height: 100%;">
+          <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80" alt="Coach leading a small group strategy session" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+
     <section id="faqs" class="container surface" aria-labelledby="faq-heading">
       <div class="section-title">
         <span class="section-kicker">Questions you might be asking</span>
@@ -1416,7 +1366,7 @@
 
   <div class="sticky-footer" id="sticky-footer" aria-hidden="false">
     <p>Oct 23 • Only <span data-seat-pill>8</span> seats • $997</p>
-    <a class="btn btn-primary" href="#register" data-cta="sticky">Register Now</a>
+    <a class="btn btn-primary cta-highlight" href="#register" data-cta="sticky">Register Now</a>
   </div>
 
   <script>
