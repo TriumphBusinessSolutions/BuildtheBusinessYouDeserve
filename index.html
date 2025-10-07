@@ -15,21 +15,25 @@
   <meta name="twitter:title" content="Build the Business You Deserve: Full-Day Intensive" />
   <meta name="twitter:description" content="One-day, small-group intensive for business owners. Gain clarity, stop profit leaks, and leave with an action plan." />
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
-  <link rel="preconnect" href="https://checkout.gohighlevel.com" />
+  <link rel="preconnect" href="https://link.beesavvy.app" />
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
   <style>
     :root {
       --blue: #004AAD;
       --orange: #FA9100;
-      --navy: #0F1A2A;
+      --navy: #E9F1FF;
+      --midnight: #050B16;
+      --ink: #0F1A2A;
       --sky: #F7F9FC;
-      --slate: #374151;
+      --slate: #A8B7CE;
+      --surface: rgba(18, 34, 58, 0.82);
+      --card: rgba(15, 29, 52, 0.88);
       --white: #FFFFFF;
       --radius-lg: 28px;
       --radius: 18px;
-      --shadow-lg: 0 22px 60px rgba(15, 26, 42, 0.18);
-      --shadow: 0 16px 36px rgba(15, 26, 42, 0.12);
+      --shadow-lg: 0 32px 120px rgba(3, 7, 18, 0.55);
+      --shadow: 0 20px 60px rgba(8, 17, 35, 0.45);
       --font-heading: 'Inter', 'Poppins', 'Segoe UI', sans-serif;
       --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
       --transition: all 0.25s ease;
@@ -43,7 +47,9 @@
       font-size: 18px;
       line-height: 1.7;
       color: var(--navy);
-      background: var(--sky);
+      background: radial-gradient(circle at 10% -10%, rgba(0, 74, 173, 0.45), transparent 55%),
+        linear-gradient(135deg, rgba(4, 12, 28, 0.95), rgba(2, 7, 20, 0.98));
+      min-height: 100vh;
       -webkit-font-smoothing: antialiased;
     }
     img {
@@ -53,7 +59,7 @@
       border-radius: inherit;
     }
     a {
-      color: var(--blue);
+      color: var(--sky);
       font-weight: 600;
       text-decoration: none;
     }
@@ -63,7 +69,7 @@
     }
     h1, h2, h3 {
       font-family: var(--font-heading);
-      color: var(--navy);
+      color: var(--sky);
       margin: 0 0 0.5em;
       line-height: 1.15;
     }
@@ -79,6 +85,7 @@
     }
     p {
       margin: 0 0 1.2em;
+      color: var(--slate);
     }
     ul {
       margin: 0 0 1.5em;
@@ -87,7 +94,32 @@
     .container {
       width: min(1180px, 92vw);
       margin: 0 auto;
-      padding: 5rem 0;
+      padding: 5rem clamp(1.5rem, 6vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+    .surface {
+      background: var(--surface);
+      border-radius: 32px;
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
+      position: relative;
+      overflow: hidden;
+    }
+    .surface::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: 31px;
+      background: linear-gradient(135deg, rgba(0, 74, 173, 0.16), rgba(250, 145, 0, 0.08) 45%, transparent);
+      opacity: 0.35;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .surface > * {
+      position: relative;
+      z-index: 2;
     }
     .section-title {
       display: flex;
@@ -133,17 +165,18 @@
     }
     .btn-secondary {
       background: transparent;
-      color: var(--blue);
-      border-color: rgba(0, 74, 173, 0.35);
+      color: var(--sky);
+      border-color: rgba(255, 255, 255, 0.35);
     }
     .btn-secondary:hover,
     .btn-secondary:focus {
-      background: rgba(0, 74, 173, 0.08);
+      background: rgba(255, 255, 255, 0.08);
     }
     .hero {
       display: grid;
       gap: 3rem;
       padding-top: 5.5rem;
+      color: var(--sky);
     }
     .hero-content {
       display: flex;
@@ -159,7 +192,7 @@
     }
     .hero-sub {
       font-size: 1.2rem;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.82);
     }
     .badge-row {
       display: flex;
@@ -170,16 +203,18 @@
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(0, 74, 173, 0.12);
-      color: var(--blue);
+      background: rgba(0, 74, 173, 0.28);
+      color: var(--sky);
       padding: 0.55rem 1.25rem;
       border-radius: 999px;
       font-weight: 600;
       font-size: 0.95rem;
+      box-shadow: 0 12px 26px rgba(0, 74, 173, 0.32);
     }
     .badge.orange {
-      background: rgba(250, 145, 0, 0.16);
-      color: var(--orange);
+      background: rgba(250, 145, 0, 0.22);
+      color: #FFE1B0;
+      box-shadow: 0 12px 26px rgba(250, 145, 0, 0.3);
     }
     .hero-ctas {
       display: flex;
@@ -189,15 +224,17 @@
     .hero-trust {
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.78);
     }
     .hero-visual {
-      background: var(--white);
+      background: var(--card);
       border-radius: var(--radius-lg);
       padding: 1.2rem;
       box-shadow: var(--shadow-lg);
       position: relative;
       overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      animation: float 12s ease-in-out infinite;
     }
     .hero-visual::before {
       content: "";
@@ -227,21 +264,22 @@
       gap: 1rem;
     }
     .timer-box {
-      background: var(--white);
+      background: var(--card);
       border-radius: 20px;
       padding: 1rem 1.2rem;
       text-align: center;
       box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.18);
     }
     .timer-box strong {
       font-size: 1.9rem;
       display: block;
       font-family: var(--font-heading);
-      color: var(--blue);
+      color: var(--sky);
     }
     .countdown-note {
       font-size: 0.95rem;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.75);
       font-weight: 600;
     }
     .countdown-note span {
@@ -254,18 +292,20 @@
     }
     .pain-item {
       list-style: none;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.06);
       border-radius: 999px;
       padding: 0.9rem 1.3rem;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      box-shadow: 0 12px 26px rgba(15, 26, 42, 0.08);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
       font-weight: 600;
+      color: var(--sky);
+      border: 1px solid rgba(148, 163, 184, 0.16);
     }
     .pain-item span {
-      background: rgba(0, 74, 173, 0.12);
-      color: var(--blue);
+      background: rgba(0, 74, 173, 0.22);
+      color: var(--sky);
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -288,12 +328,13 @@
     }
     .outcome-bullets li {
       list-style: none;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 18px;
       padding: 1.1rem 1.4rem;
       border-left: 5px solid var(--blue);
-      box-shadow: 0 14px 32px rgba(15, 26, 42, 0.08);
+      box-shadow: 0 20px 45px rgba(4, 10, 24, 0.5);
       font-weight: 600;
+      color: var(--sky);
     }
     .mini-proof {
       display: flex;
@@ -319,7 +360,24 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: var(--shadow);
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(148, 163, 184, 0.12);
+      position: relative;
+    }
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      animation: slow-zoom 22s ease-in-out infinite;
+    }
+    .photo-card:nth-child(2) img {
+      animation-duration: 20s;
+      animation-direction: alternate;
+    }
+    .photo-card:nth-child(3) img {
+      animation-duration: 24s;
+      animation-direction: alternate-reverse;
     }
     .agenda-grid {
       display: grid;
@@ -327,109 +385,202 @@
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
     .agenda-card {
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
       padding: 1.6rem;
       box-shadow: var(--shadow);
       display: grid;
       gap: 0.6rem;
+      border: 1px solid rgba(148, 163, 184, 0.12);
     }
     .agenda-note {
       margin-top: 1.6rem;
       font-weight: 600;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.75);
     }
     .details-shell {
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      align-items: stretch;
+      display: block;
     }
     .details-card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 28px;
+      padding: clamp(2rem, 4vw, 3rem);
       box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.14);
+      display: grid;
+      gap: 1.6rem;
+    }
+    .details-grid {
       display: grid;
       gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     }
     .details-card ul {
       margin: 0;
       padding: 0;
       list-style: none;
       display: grid;
-      gap: 1rem;
+      gap: 0.4rem;
+      color: var(--sky);
+      font-weight: 600;
+    }
+    .details-card li {
+      display: grid;
+      gap: 0.25rem;
     }
     .details-card strong {
-      color: var(--blue);
+      color: var(--sky);
     }
-    .meter-card {
-      background: var(--white);
-      border-radius: 24px;
-      padding: 2rem;
-      box-shadow: var(--shadow);
-      display: grid;
-      gap: 1.2rem;
-      justify-items: center;
-      text-align: center;
-    }
-    .seats-meter {
-      font-size: 1.1rem;
-      font-weight: 700;
-      padding: 0.75rem 1.5rem;
-      border-radius: 999px;
-      background: rgba(0, 170, 114, 0.15);
-      color: #006644;
-      transition: var(--transition);
-    }
-    .countdown-small {
-      font-weight: 600;
+    .details-card li span {
+      display: block;
+      font-weight: 400;
       color: var(--slate);
     }
+    .details-countdown {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 20px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.1);
+      color: var(--sky);
+    }
+    .details-countdown .btn {
+      flex-shrink: 0;
+    }
+    .details-countdown strong {
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250, 145, 0, 0.86);
+    }
     .details-cta {
-      margin-top: 2rem;
+      margin-top: 2.5rem;
       display: flex;
       justify-content: center;
     }
-    .testimonials {
+    .testimonial-collage {
       display: grid;
+      gap: 1.75rem;
+      overflow: hidden;
+    }
+    .collage-track {
+      display: flex;
       gap: 1.5rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      width: max-content;
+      animation: marquee 28s linear infinite;
     }
-    .testimonial-card {
-      background: var(--white);
-      border-radius: 22px;
-      padding: 1.5rem 1.8rem;
-      box-shadow: var(--shadow);
+    .collage-track.reverse {
+      animation-direction: reverse;
+      animation-duration: 32s;
+    }
+    .testimonial-chip {
+      flex: 0 0 320px;
+      padding: 1.6rem;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 24px 55px rgba(0, 0, 0, 0.35);
       display: grid;
-      gap: 0.8rem;
+      gap: 1rem;
+      color: var(--sky);
     }
-    .testimonial-card span {
-      font-weight: 700;
-      color: var(--blue);
+    .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(232, 240, 255, 0.9);
+    }
+    .testimonial-author {
+      display: grid;
+      gap: 0.3rem;
+    }
+    .testimonial-author strong {
+      color: var(--sky);
+      font-size: 0.95rem;
+    }
+    .testimonial-author span {
+      color: rgba(232, 240, 255, 0.7);
+      font-size: 0.9rem;
     }
     .faq {
       display: grid;
       gap: 1rem;
     }
     .faq-item {
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.05);
       border-radius: 20px;
-      padding: 1.4rem 1.6rem;
-      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 22px 45px rgba(2, 7, 20, 0.55);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .faq-item.open {
+      border-color: rgba(250, 145, 0, 0.45);
+      box-shadow: 0 28px 60px rgba(250, 145, 0, 0.18);
+    }
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: var(--sky);
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 1.35rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      cursor: pointer;
+    }
+    .faq-question span {
+      flex: 1;
+      text-align: left;
+    }
+    .faq-question svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+      fill: none;
+      stroke: rgba(232, 240, 255, 0.7);
+      stroke-width: 2;
+    }
+    .faq-item.open .faq-question svg {
+      transform: rotate(180deg);
+      stroke: rgba(250, 145, 0, 0.9);
+    }
+    .faq-question:focus-visible {
+      outline: 3px solid var(--orange);
+      outline-offset: 3px;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      padding: 0 1.6rem;
+    }
+    .faq-item.open .faq-answer {
+      padding-bottom: 1.4rem;
+    }
+    .faq-answer p {
+      color: rgba(232, 240, 255, 0.78);
+      margin-bottom: 0;
     }
     .register {
       padding: 5rem 0;
       text-align: center;
     }
     .register .sub {
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.82);
       margin-bottom: 0.75rem;
       font-weight: 600;
     }
     .register .micro {
       font-size: 0.95rem;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.7);
       margin-bottom: 1.5rem;
     }
     .register .frame {
@@ -439,7 +590,8 @@
       border-radius: 24px;
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      background: var(--white);
+      background: rgba(10, 20, 40, 0.82);
+      border: 1px solid rgba(148, 163, 184, 0.2);
     }
     .register iframe {
       width: 100%;
@@ -447,16 +599,22 @@
       border: 0;
       border-radius: 0;
       display: block;
+      background: #ffffff;
+    }
+    .register-shell {
+      padding-top: 3.5rem;
+      padding-bottom: 3.5rem;
     }
     .register .note {
       font-size: 0.95rem;
       color: #475569;
     }
     footer {
-      background: #E8EDF6;
+      background: rgba(5, 11, 22, 0.92);
       padding: 2.5rem 0;
       font-size: 0.95rem;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.7);
+      border-top: 1px solid rgba(148, 163, 184, 0.22);
     }
     footer .footer-inner {
       width: min(1180px, 92vw);
@@ -468,7 +626,10 @@
       align-items: flex-start;
     }
     footer a {
-      color: var(--blue);
+      color: var(--sky);
+    }
+    footer strong {
+      color: var(--sky);
     }
     .sticky-footer {
       position: fixed;
@@ -492,7 +653,7 @@
     }
     .sticky-footer .btn-primary {
       background: var(--orange);
-      color: var(--navy);
+      color: var(--ink);
       border-color: transparent;
       min-width: 160px;
       box-shadow: 0 14px 32px rgba(250, 145, 0, 0.35);
@@ -503,12 +664,39 @@
     }
     .micro-cta {
       font-size: 0.95rem;
-      color: var(--slate);
+      color: rgba(232, 240, 255, 0.78);
       text-align: center;
       margin-top: 1.5rem;
     }
     .micro-cta a {
-      color: var(--blue);
+      color: var(--sky);
+    }
+    .collage-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+      }
+      50% {
+        transform: translateY(-12px) scale(1.02);
+      }
+    }
+    @keyframes slow-zoom {
+      0%, 100% {
+        transform: scale(1.08) translate3d(0, 0, 0);
+      }
+      50% {
+        transform: scale(1.15) translate3d(0, -2%, 0);
+      }
+    }
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
     @media (max-width: 900px) {
       .hero {
@@ -538,11 +726,33 @@
         display: flex;
       }
     }
+    @media (max-width: 640px) {
+      .details-countdown {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .details-countdown .btn {
+        width: 100%;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+      .hero-visual,
+      .photo-card img,
+      .collage-track {
+        animation: none !important;
+      }
+    }
   </style>
 </head>
 <body>
   <main id="top">
-    <section class="hero container" aria-labelledby="hero-heading">
+    <section class="hero container surface" aria-labelledby="hero-heading">
       <div class="hero-content">
         <span class="hero-kicker">From overwhelmed to in control</span>
         <h1 id="hero-heading">Build the Business You Deserve</h1>
@@ -572,7 +782,7 @@
       </div>
     </section>
 
-    <section id="pains" class="container" aria-labelledby="pains-heading">
+    <section id="pains" class="container surface" aria-labelledby="pains-heading">
       <div class="section-title">
         <span class="section-kicker">Let's be real</span>
         <h2 id="pains-heading">Do any of these hit home?</h2>
@@ -587,7 +797,7 @@
       <p class="micro-cta">I’m ready to fix this → <a href="#register" data-cta="pains-inline">Reserve My Seat</a></p>
     </section>
 
-    <section id="outcomes" class="container" aria-labelledby="outcomes-heading">
+    <section id="outcomes" class="container surface" aria-labelledby="outcomes-heading">
       <div class="section-title">
         <span class="section-kicker">What changes after one day</span>
         <h2 id="outcomes-heading">In just one day, you’ll gain…</h2>
@@ -613,7 +823,7 @@
       </div>
     </section>
 
-    <section class="container" aria-labelledby="photos-heading">
+    <section class="container surface" aria-labelledby="photos-heading">
       <h2 id="photos-heading" class="section-kicker" style="margin-bottom: 1.5rem;">See the energy</h2>
       <div class="photo-strip">
         <figure class="photo-card">
@@ -628,7 +838,7 @@
       </div>
     </section>
 
-    <section id="agenda" class="container" aria-labelledby="agenda-heading">
+    <section id="agenda" class="container surface" aria-labelledby="agenda-heading">
       <div class="section-title">
         <span class="section-kicker">Your day, by design</span>
         <h2 id="agenda-heading">What we’ll cover</h2>
@@ -650,25 +860,30 @@
       <p class="agenda-note">Small group work. You’ll work on your business, not sit through slide shows.</p>
     </section>
 
-    <section id="details" class="container" aria-labelledby="details-heading">
+    <section id="details" class="container surface" aria-labelledby="details-heading">
       <div class="section-title">
         <span class="section-kicker">Know before you go</span>
         <h2 id="details-heading">Event details</h2>
       </div>
       <div class="details-shell">
         <div class="details-card">
-          <ul>
-            <li><strong>When:</strong> Wed, Oct 23 • 9:00am–5:30pm (check-in 8:30am)</li>
-            <li><strong>Where:</strong> 35590 Center Ridge Rd, #209, North Ridgeville, OH 44039</li>
-            <li><strong>Includes:</strong> Light breakfast & lunch</li>
-            <li><strong>Seats:</strong> Only 8 (first come, first served)</li>
-            <li><strong>Investment:</strong> $997 • Payment plans available</li>
-          </ul>
+          <div class="details-grid">
+            <ul>
+              <li><strong>When</strong><span>Wed, Oct 23 • 9:00am–5:30pm (check-in 8:30am)</span></li>
+              <li><strong>Where</strong><span>35590 Center Ridge Rd, #209, North Ridgeville, OH 44039</span></li>
+            </ul>
+            <ul>
+              <li><strong>Includes</strong><span>Light breakfast & lunch</span></li>
+              <li><strong>Seats</strong><span>Only 8 (first come, first served)</span></li>
+              <li><strong>Investment</strong><span>$997 • Payment plans available</span></li>
+            </ul>
+          </div>
+          <div class="details-countdown" aria-live="polite">
+            <strong>Clock is ticking</strong>
+            <span id="details-countdown">Countdown loading…</span>
+            <a class="btn btn-primary" href="#register" data-cta="details-inline">Reserve My Seat</a>
+          </div>
           <p class="micro-cta">Questions? Email <a href="mailto:support@triumphbusinesssolutions.pro">support@triumphbusinesssolutions.pro</a> or call <a href="tel:14407326647">440-732-6647</a></p>
-        </div>
-        <div class="meter-card" aria-live="polite">
-          <div class="countdown-small" id="details-countdown">Countdown loading…</div>
-          <div class="seats-meter" id="seatsMeter">Only <span id="seatsLeft">8</span> seats remaining</div>
         </div>
       </div>
       <div class="details-cta">
@@ -676,71 +891,192 @@
       </div>
     </section>
 
-    <section class="container" aria-labelledby="social-heading">
+    <section class="container surface" aria-labelledby="social-heading">
       <div class="section-title">
         <span class="section-kicker">Owners we’ve worked with say…</span>
         <h2 id="social-heading">Proof you’re in good company</h2>
       </div>
-      <div class="testimonials">
-        <div class="testimonial-card">
-          <p>“We stopped guessing and finally had a weekly plan.”</p>
-          <span>— M.R., agency owner</span>
+      <div class="testimonial-collage" role="list">
+        <div class="collage-track">
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“I’ve spoken with David several times and every time I walk away with new clarity. He makes financial strategy easy to understand and immediately actionable.”</p>
+            <div class="testimonial-author">
+              <strong>Alex V.</strong>
+              <span>Courtland &amp; Co. Accounting • Real Strategy, Not Fluff</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“Dave is more than a coach—he’s a true partner. His advice helped me unlock a new level of growth I didn’t think was possible.”</p>
+            <div class="testimonial-author">
+              <strong>Sean B.</strong>
+              <span>Cache Consulting • From Stuck to Scaling</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“After one call, David uncovered over $30K in overlooked opportunities. He’s not just looking at numbers—he’s looking at what they mean for your growth.”</p>
+            <div class="testimonial-author">
+              <strong>JJ H.</strong>
+              <span>Victory Leadership Coaching • Results in One Call</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“David doesn’t just give you advice—he makes you feel heard, supported, and confident in your next steps.”</p>
+            <div class="testimonial-author">
+              <strong>Roshni S.</strong>
+              <span>StillFire Healing Inc. • Support You Can Feel</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“David works with profitable and non-profit organizations, is professional, knowledgeable, and has a charismatic personality.”</p>
+            <div class="testimonial-author">
+              <strong>Michelle R.</strong>
+              <span>Coding &amp; Compliance Experts</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“Triumph brings deep experience to find efficiencies and fresh perspective to help you scale. Book time—your conversation will be fruitful.”</p>
+            <div class="testimonial-author">
+              <strong>Doug S.</strong>
+              <span>Fellowship Financial Services</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" aria-hidden="true">
+            <p class="testimonial-quote">“I’ve spoken with David several times and every time I walk away with new clarity. He makes financial strategy easy to understand and immediately actionable.”</p>
+            <div class="testimonial-author">
+              <strong>Alex V.</strong>
+              <span>Courtland &amp; Co. Accounting • Real Strategy, Not Fluff</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" aria-hidden="true">
+            <p class="testimonial-quote">“David doesn’t just give you advice—he makes you feel heard, supported, and confident in your next steps.”</p>
+            <div class="testimonial-author">
+              <strong>Roshni S.</strong>
+              <span>StillFire Healing Inc. • Support You Can Feel</span>
+            </div>
+          </article>
         </div>
-        <div class="testimonial-card">
-          <p>“Paid myself first for the first time in years.”</p>
-          <span>— S.K., contractor</span>
-        </div>
-        <div class="testimonial-card">
-          <p>“Clarity on what to cut and where to push.”</p>
-          <span>— J.T., e-com</span>
+        <div class="collage-track reverse" aria-hidden="true">
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“If you're looking for someone to bounce ideas off of and help you see your business—and your own potential—in a new light, connect with David. He's fully invested in your success.”</p>
+            <div class="testimonial-author">
+              <strong>Darian T.</strong>
+              <span>Insignia Graphics</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“My first contact with David was eye-opening. He asked about me and my business history. No high-pressure—just a genuine conversation.”</p>
+            <div class="testimonial-author">
+              <strong>Bradd R.</strong>
+              <span>Bradd’s Tax and Bookkeeping</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“David is an incredible insight to have on your team. He looks at your business as if it were his, making sure you succeed.”</p>
+            <div class="testimonial-author">
+              <strong>Charley G.</strong>
+              <span>Chas Enterprise Group</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“I’ve spoken with David several times and every time I walk away energized with a clear next move.”</p>
+            <div class="testimonial-author">
+              <strong>Alex V.</strong>
+              <span>Courtland &amp; Co. Accounting</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" role="listitem">
+            <p class="testimonial-quote">“Dave is more than a coach—he’s a true partner. His advice helped me unlock a new level of growth.”</p>
+            <div class="testimonial-author">
+              <strong>Sean B.</strong>
+              <span>Cache Consulting</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" aria-hidden="true">
+            <p class="testimonial-quote">“My first contact with David was eye-opening. He asked about me and my business history. No high-pressure—just a genuine conversation.”</p>
+            <div class="testimonial-author">
+              <strong>Bradd R.</strong>
+              <span>Bradd’s Tax and Bookkeeping</span>
+            </div>
+          </article>
+          <article class="testimonial-chip" aria-hidden="true">
+            <p class="testimonial-quote">“David is an incredible insight to have on your team. He looks at your business as if it were his, making sure you succeed.”</p>
+            <div class="testimonial-author">
+              <strong>Charley G.</strong>
+              <span>Chas Enterprise Group</span>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="faqs" class="container" aria-labelledby="faq-heading">
+    <section id="faqs" class="container surface" aria-labelledby="faq-heading">
       <div class="section-title">
         <span class="section-kicker">Questions you might be asking</span>
         <h2 id="faq-heading">FAQs</h2>
       </div>
       <div class="faq">
         <div class="faq-item">
-          <h3>Will this fix everything in a day?</h3>
-          <p>No. You’ll leave with clarity, tools, and a plan you can start immediately.</p>
+          <button class="faq-question" aria-expanded="false">
+            <span>Will this fix everything in a day?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>No. You’ll leave with clarity, tools, and a plan you can start immediately.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>What should I bring?</h3>
-          <p>A notebook or laptop and your key numbers (revenue + major expenses).</p>
+          <button class="faq-question" aria-expanded="false">
+            <span>What should I bring?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>A notebook or laptop and your key numbers (revenue + major expenses).</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>Payment plans?</h3>
-          <p>Yes—ask at checkout or reply to your confirmation.</p>
+          <button class="faq-question" aria-expanded="false">
+            <span>Payment plans?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Yes—available during checkout. Choose the plan that fits and you’re in.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>Parking?</h3>
-          <p>On site.</p>
+          <button class="faq-question" aria-expanded="false">
+            <span>Parking?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>On site.</p>
+          </div>
         </div>
         <div class="faq-item">
-          <h3>Refunds?</h3>
-          <p>Seats are limited; contact us for edge cases.</p>
+          <button class="faq-question" aria-expanded="false">
+            <span>Refunds?</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" /></svg>
+          </button>
+          <div class="faq-answer" hidden>
+            <p>Seats are limited; contact us for edge cases.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="register" class="register" aria-labelledby="register-heading">
-      <div class="container" style="padding-top: 0; padding-bottom: 0;">
+      <div class="container surface register-shell">
         <h2 id="register-heading">Reserve Your Seat</h2>
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
         <div class="frame" role="region" aria-label="Secure checkout">
           <iframe
-            src="https://checkout.gohighlevel.com/v2/checkout/form/<YOUR_GHL_CHECKOUT_ID>"
+            src="https://link.beesavvy.app/payment-link/68de7fdf67ee3b41da699095"
             title="Event Checkout"
             loading="lazy"
             allowpaymentrequest
             referrerpolicy="no-referrer-when-downgrade">
           </iframe>
         </div>
-        <p class="note">Payment plans available on request. Reply to your confirmation and we’ll set it up.</p>
       </div>
     </section>
   </main>
@@ -778,23 +1114,9 @@
     const heroPrimary = document.querySelector('[data-cta="hero-primary"]');
     const stickyCTA = document.querySelector('[data-cta="sticky"]');
     const seatPills = document.querySelectorAll('[data-seat-pill]');
-    const seatsLeftEl = document.getElementById('seatsLeft');
-    const seatsMeter = document.getElementById('seatsMeter');
 
     function updateSeatsLeft(count) {
-      seatPills.forEach(el => el.textContent = count);
-      if (seatsLeftEl) seatsLeftEl.textContent = count;
-      if (!seatsMeter) return;
-      if (count <= 1) {
-        seatsMeter.style.background = 'rgba(220, 38, 38, 0.16)';
-        seatsMeter.style.color = '#991B1B';
-      } else if (count <= 3) {
-        seatsMeter.style.background = 'rgba(250, 145, 0, 0.18)';
-        seatsMeter.style.color = '#C2410C';
-      } else if (count <= 5) {
-        seatsMeter.style.background = 'rgba(250, 145, 0, 0.14)';
-        seatsMeter.style.color = '#B45309';
-      }
+      seatPills.forEach(el => (el.textContent = count));
     }
 
     function formatNumber(num) {
@@ -859,6 +1181,39 @@
       }, { threshold: 0.25 });
       observer.observe(registerSection);
     }
+
+    const faqButtons = document.querySelectorAll('.faq-question');
+    faqButtons.forEach(button => {
+      const item = button.closest('.faq-item');
+      const answer = item?.querySelector('.faq-answer');
+      if (!answer) return;
+
+      answer.style.maxHeight = '0px';
+
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', String(!expanded));
+        item.classList.toggle('open', !expanded);
+
+        if (!expanded) {
+          answer.hidden = false;
+          const height = answer.scrollHeight;
+          answer.style.maxHeight = height + 'px';
+        } else {
+          const height = answer.scrollHeight;
+          answer.style.maxHeight = height + 'px';
+          requestAnimationFrame(() => {
+            answer.style.maxHeight = '0px';
+          });
+          answer.addEventListener('transitionend', function handle(e) {
+            if (e.propertyName === 'max-height') {
+              answer.hidden = true;
+              answer.removeEventListener('transitionend', handle);
+            }
+          });
+        }
+      });
+    });
   </script>
   <script type="application/ld+json">
     {
