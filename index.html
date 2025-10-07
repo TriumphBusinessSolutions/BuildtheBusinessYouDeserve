@@ -51,6 +51,7 @@
         linear-gradient(135deg, rgba(4, 12, 28, 0.95), rgba(2, 7, 20, 0.98));
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      text-align: center;
     }
     img {
       max-width: 100%;
@@ -74,8 +75,8 @@
       line-height: 1.15;
     }
     h1 {
-      font-size: clamp(3rem, 5vw, 3.5rem);
-      letter-spacing: -0.01em;
+      font-size: clamp(3.2rem, 6vw, 4.3rem);
+      letter-spacing: -0.02em;
     }
     h2 {
       font-size: clamp(2.1rem, 4vw, 2.7rem);
@@ -86,6 +87,7 @@
     p {
       margin: 0 0 1.2em;
       color: var(--slate);
+      text-align: center;
     }
     ul {
       margin: 0 0 1.5em;
@@ -126,13 +128,26 @@
       flex-direction: column;
       gap: 0.6rem;
       margin-bottom: 2.5rem;
+      align-items: center;
+      text-align: center;
+    }
+    .section-title h2 {
+      text-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+      letter-spacing: -0.015em;
     }
     .section-kicker {
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.16em;
       color: var(--orange);
       font-size: 0.85rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.45rem 1.4rem;
+      border-radius: 999px;
+      background: rgba(250, 145, 0, 0.16);
+      box-shadow: 0 10px 26px rgba(250, 145, 0, 0.25);
     }
     .btn {
       display: inline-flex;
@@ -177,11 +192,24 @@
       gap: 3rem;
       padding-top: 5.5rem;
       color: var(--sky);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      align-items: center;
+      justify-items: center;
+      text-align: center;
     }
     .hero-content {
       display: flex;
       flex-direction: column;
       gap: 1.6rem;
+      align-items: center;
+    }
+    .hero-title {
+      display: inline-block;
+      padding: 0.25rem 1rem;
+      border-radius: 32px;
+      background: linear-gradient(135deg, rgba(0, 74, 173, 0.24), rgba(250, 145, 0, 0.18));
+      box-shadow: 0 32px 90px rgba(0, 0, 0, 0.55);
+      text-shadow: 0.08em 0.08em 0 rgba(1, 15, 40, 0.85), 0.16em 0.16em 0 rgba(0, 74, 173, 0.35);
     }
     .hero-kicker {
       font-weight: 700;
@@ -193,11 +221,14 @@
     .hero-sub {
       font-size: 1.2rem;
       color: rgba(232, 240, 255, 0.82);
+      max-width: 640px;
+      margin: 0 auto;
     }
     .badge-row {
       display: flex;
       flex-wrap: wrap;
       gap: 0.75rem;
+      justify-content: center;
     }
     .badge {
       display: inline-flex;
@@ -220,6 +251,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
+      justify-content: center;
     }
     .hero-trust {
       font-size: 0.95rem;
@@ -289,6 +321,7 @@
       display: grid;
       gap: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      justify-items: center;
     }
     .pain-item {
       list-style: none;
@@ -302,6 +335,8 @@
       font-weight: 600;
       color: var(--sky);
       border: 1px solid rgba(148, 163, 184, 0.16);
+      justify-content: center;
+      text-align: center;
     }
     .pain-item span {
       background: rgba(0, 74, 173, 0.22);
@@ -321,20 +356,68 @@
     .outcomes-grid {
       display: grid;
       gap: 2.5rem;
+      align-items: center;
+      justify-items: center;
     }
-    .outcome-bullets {
+    .outcome-accordions {
       display: grid;
-      gap: 1rem;
+      gap: 1.2rem;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
     }
-    .outcome-bullets li {
-      list-style: none;
+    .outcome-item {
       background: rgba(255, 255, 255, 0.05);
-      border-radius: 18px;
-      padding: 1.1rem 1.4rem;
-      border-left: 5px solid var(--blue);
-      box-shadow: 0 20px 45px rgba(4, 10, 24, 0.5);
-      font-weight: 600;
+      border-radius: 22px;
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      box-shadow: 0 24px 55px rgba(4, 10, 24, 0.55);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .outcome-item.open {
+      border-color: rgba(250, 145, 0, 0.4);
+      box-shadow: 0 32px 70px rgba(250, 145, 0, 0.18);
+    }
+    .outcome-toggle {
+      width: 100%;
+      background: transparent;
+      border: none;
       color: var(--sky);
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      padding: 1.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.2rem;
+      cursor: pointer;
+      text-align: left;
+    }
+    .outcome-toggle span {
+      flex: 1;
+    }
+    .outcome-toggle svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--orange);
+      stroke-width: 2;
+      fill: none;
+      transition: var(--transition);
+    }
+    .outcome-item.open .outcome-toggle svg {
+      transform: rotate(180deg);
+    }
+    .outcome-content {
+      padding: 0 1.6rem 1.4rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .outcome-content p {
+      margin: 0;
+      color: rgba(232, 240, 255, 0.85);
+      text-align: left;
     }
     .mini-proof {
       display: flex;
@@ -343,6 +426,7 @@
       margin-top: 0.8rem;
       font-weight: 600;
       color: var(--slate);
+      justify-content: center;
     }
     .mini-proof span {
       background: rgba(250, 145, 0, 0.16);
@@ -351,33 +435,58 @@
       border-radius: 999px;
       font-size: 0.9rem;
     }
-    .photo-strip {
+    .mentors-grid {
       display: grid;
-      gap: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      justify-items: center;
     }
-    .photo-card {
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
+    .mentor-card {
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(148, 163, 184, 0.12);
-      position: relative;
+      border-radius: 26px;
+      padding: 2.2rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      display: grid;
+      gap: 1.4rem;
+      max-width: 520px;
+      text-align: center;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
     }
-    .photo-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.08);
-      animation: slow-zoom 22s ease-in-out infinite;
+    .mentor-card:hover,
+    .mentor-card:focus-within {
+      transform: translateY(-8px);
+      border-color: rgba(250, 145, 0, 0.35);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
     }
-    .photo-card:nth-child(2) img {
-      animation-duration: 20s;
-      animation-direction: alternate;
+    .mentor-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(250, 145, 0, 0.65), rgba(0, 74, 173, 0.75));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--white);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
     }
-    .photo-card:nth-child(3) img {
-      animation-duration: 24s;
-      animation-direction: alternate-reverse;
+    .mentor-name {
+      font-size: 1.6rem;
+      color: var(--sky);
+      margin-bottom: 0.4rem;
+    }
+    .mentor-role {
+      color: rgba(250, 145, 0, 0.85);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.82rem;
+    }
+    .mentor-bio {
+      color: rgba(232, 240, 255, 0.85);
     }
     .agenda-grid {
       display: grid;
@@ -423,10 +532,12 @@
       gap: 0.4rem;
       color: var(--sky);
       font-weight: 600;
+      text-align: left;
     }
     .details-card li {
       display: grid;
       gap: 0.25rem;
+      text-align: left;
     }
     .details-card strong {
       color: var(--sky);
@@ -435,13 +546,15 @@
       display: block;
       font-weight: 400;
       color: var(--slate);
+      text-align: left;
     }
     .details-countdown {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
+      text-align: center;
       background: rgba(255, 255, 255, 0.04);
       border-radius: 20px;
       padding: 1.25rem 1.5rem;
@@ -568,6 +681,7 @@
     .faq-answer p {
       color: rgba(232, 240, 255, 0.78);
       margin-bottom: 0;
+      text-align: left;
     }
     .register {
       padding: 5rem 0;
@@ -604,10 +718,6 @@
     .register-shell {
       padding-top: 3.5rem;
       padding-bottom: 3.5rem;
-    }
-    .register .note {
-      font-size: 0.95rem;
-      color: #475569;
     }
     footer {
       background: rgba(5, 11, 22, 0.92);
@@ -682,14 +792,6 @@
         transform: translateY(-12px) scale(1.02);
       }
     }
-    @keyframes slow-zoom {
-      0%, 100% {
-        transform: scale(1.08) translate3d(0, 0, 0);
-      }
-      50% {
-        transform: scale(1.15) translate3d(0, -2%, 0);
-      }
-    }
     @keyframes marquee {
       0% {
         transform: translateX(0);
@@ -743,7 +845,6 @@
         scroll-behavior: auto !important;
       }
       .hero-visual,
-      .photo-card img,
       .collage-track {
         animation: none !important;
       }
@@ -755,8 +856,8 @@
     <section class="hero container surface" aria-labelledby="hero-heading">
       <div class="hero-content">
         <span class="hero-kicker">From overwhelmed to in control</span>
-        <h1 id="hero-heading">Build the Business You Deserve</h1>
-        <p class="hero-sub">One day. Eight seats. Walk in with questions—walk out with clarity, focus, and a plan you can use immediately.</p>
+        <h1 id="hero-heading" class="hero-title">Build the Business You Deserve</h1>
+        <p class="hero-sub">One day. Eight seats. Walk in with questions—walk out with clarity, focus, and a plan you can put to work immediately.</p>
         <div class="badge-row" role="list" aria-label="Event highlights">
           <span class="badge">Oct 23 • North Ridgeville</span>
           <span class="badge orange">Only <span data-seat-pill>8</span> Seats</span>
@@ -804,13 +905,53 @@
       </div>
       <div class="outcomes-grid">
         <div>
-          <ul class="outcome-bullets">
-            <li>A clear plan to finally pay yourself first.</li>
-            <li>Clarity on the leaks silently draining profit.</li>
-            <li>A smarter business model designed for sustainable growth.</li>
-            <li>Focus on the few strategies that move the needle next.</li>
-            <li>A simple action plan you can start this week.</li>
-          </ul>
+          <div class="outcome-accordions">
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A clear plan to finally pay yourself first.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Map your revenue buckets, set owner's pay targets, and lock in a rhythm that funds your priorities before expenses hit.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>Clarity on the leaks silently draining profit.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Trace every dollar leaving your business, flag hidden subscriptions or bloated costs, and build simple guardrails to keep them visible.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A smarter business model designed for sustainable growth.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Pressure-test your revenue streams, pricing, and delivery so growth scales margins and capacity instead of chaos.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>Focus on the few strategies that move the needle next.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Leave with a ruthless priority map that points your team toward the next three moves that matter—not a 40-item wish list.</p>
+              </div>
+            </article>
+            <article class="outcome-item">
+              <button class="outcome-toggle" aria-expanded="false">
+                <span>A simple action plan you can start this week.</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14M5 12h14" /></svg>
+              </button>
+              <div class="outcome-content" hidden>
+                <p>Translate the day into a 30-60-90 day rollout with milestones, accountability, and momentum baked in.</p>
+              </div>
+            </article>
+          </div>
           <div class="mini-proof">
             <span>⏱️ 1 day</span>
             <span>🧑‍🤝‍🧑 8 owners max</span>
@@ -823,18 +964,32 @@
       </div>
     </section>
 
-    <section class="container surface" aria-labelledby="photos-heading">
-      <h2 id="photos-heading" class="section-kicker" style="margin-bottom: 1.5rem;">See the energy</h2>
-      <div class="photo-strip">
-        <figure class="photo-card">
-          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1200&q=80" alt="Small business owners leaning in during a roundtable huddle" loading="lazy" />
-        </figure>
-        <figure class="photo-card">
-          <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80" alt="Coach presenting strategies on a whiteboard to a small group" loading="lazy" />
-        </figure>
-        <figure class="photo-card">
-          <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80" alt="Business owner smiling while taking notes during a workshop" loading="lazy" />
-        </figure>
+    <section id="mentors" class="container surface" aria-labelledby="mentors-heading">
+      <div class="section-title">
+        <span class="section-kicker">Meet your mentors</span>
+        <h2 id="mentors-heading">Guides who live this work every day</h2>
+      </div>
+      <div class="mentors-grid">
+        <article class="mentor-card">
+          <div class="mentor-avatar" aria-hidden="true">DW</div>
+          <div>
+            <h3 class="mentor-name">Dave Worden</h3>
+            <p class="mentor-role">Founder, Triumph Business Solutions</p>
+          </div>
+          <p class="mentor-bio">Dave is the founder of Triumph Business Solutions, a fractional finance and growth strategy firm dedicated to ending entrepreneurial cash stress. As a Certified Profit First Professional and architect of the Profit First Cash Clarity™ system, Dave helps business owners transform chaos into clarity—creating profitable, predictable growth while paying themselves first.</p>
+          <p class="mentor-bio">With a background in financial strategy, behavioral finance, and business model design, Dave brings a pragmatic yet empowering approach to small-business leadership. Through Triumph's Profit First Cash Clarity and Business Revenue Models programs, he has helped dozens of owners turn uncertainty into structure and stress into strategy.</p>
+          <p class="mentor-bio">When not building better business systems, Dave is probably mapping out new ways to simplify the complex world of money and business—one confident entrepreneur at a time.</p>
+        </article>
+        <article class="mentor-card">
+          <div class="mentor-avatar" aria-hidden="true">JF</div>
+          <div>
+            <h3 class="mentor-name">Joe Farago</h3>
+            <p class="mentor-role">ActionCOACH Practice Owner</p>
+          </div>
+          <p class="mentor-bio">Joe Farago leads a team of certified business and executive coaches as an ActionCOACH practice owner. With decades of experience helping driven business leaders grow profits and performance, Joe combines proven systems, accountability, and no-nonsense strategy to help owners take back control of their time, team, and results.</p>
+          <p class="mentor-bio">As a coach, Joe is known for balancing warmth with rigor—challenging business owners to think bigger, execute smarter, and measure what matters. His practice applies ActionCOACH's globally tested frameworks, refined over 30 years and tens of thousands of businesses, to help entrepreneurs achieve lasting, scalable success.</p>
+          <p class="mentor-bio">Joe's passion lies in seeing business owners not just survive but thrive—building companies that run smoothly, profitably, and sustainably.</p>
+        </article>
       </div>
     </section>
 
@@ -1181,6 +1336,39 @@
       }, { threshold: 0.25 });
       observer.observe(registerSection);
     }
+
+    const outcomeToggles = document.querySelectorAll('.outcome-toggle');
+    outcomeToggles.forEach(toggle => {
+      const item = toggle.closest('.outcome-item');
+      const content = item?.querySelector('.outcome-content');
+      if (!content) return;
+
+      content.style.maxHeight = '0px';
+
+      toggle.addEventListener('click', () => {
+        const expanded = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!expanded));
+        item.classList.toggle('open', !expanded);
+
+        if (!expanded) {
+          content.hidden = false;
+          const height = content.scrollHeight;
+          content.style.maxHeight = height + 'px';
+        } else {
+          const height = content.scrollHeight;
+          content.style.maxHeight = height + 'px';
+          requestAnimationFrame(() => {
+            content.style.maxHeight = '0px';
+          });
+          content.addEventListener('transitionend', function handle(e) {
+            if (e.propertyName === 'max-height') {
+              content.hidden = true;
+              content.removeEventListener('transitionend', handle);
+            }
+          });
+        }
+      });
+    });
 
     const faqButtons = document.querySelectorAll('.faq-question');
     faqButtons.forEach(button => {
