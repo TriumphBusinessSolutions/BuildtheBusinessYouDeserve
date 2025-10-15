@@ -16,7 +16,7 @@
   <meta name="twitter:description" content="One-day, small-group intensive for business owners. Gain clarity, stop profit leaks, and leave with an action plan." />
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
   <link rel="preconnect" href="https://www.paypal.com" />
-  <script src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-UWwe8xXlglYEFt0MSQ6N6bmp2-dOe0FAytdI3QbL5oD0k&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
   <style>
@@ -1399,17 +1399,26 @@
           <div class="paypal-checkout">
             <h3>Checkout with PayPal</h3>
             <p class="paypal-copy">Tap the button below to reserve your seat. You can pay in full or select a PayPal payment plan during checkout.</p>
-            <div id="paypal-container-XC7A999C7CXLU" class="paypal-container" aria-live="polite" data-paypal-button></div>
+            <div
+              id="paypal-container-XC79A99G7CXLU"
+              class="paypal-container"
+              aria-live="polite"
+              data-paypal-button
+              data-paypal-id="XC79A99G7CXLU"
+            ></div>
             <div class="paypal-fallback" data-paypal-fallback hidden>
               <p>We couldn’t load the secure PayPal button in this browser.</p>
               <p>
-                <a class="btn btn-primary" href="https://www.paypal.com/ncp/payment/XC7A999C7CXLU" target="_blank" rel="noopener">
+                <a class="btn btn-primary" data-paypal-direct target="_blank" rel="noopener">
                   Open the PayPal checkout
                 </a>
               </p>
               <p class="paypal-alt">If you still see an error, email <a href="mailto:support@triumphbusinesssolutions.pro">support@triumphbusinesssolutions.pro</a> for help getting registered.</p>
             </div>
-            <p class="paypal-alt">Having trouble seeing the button? <a href="https://www.paypal.com/ncp/payment/XC7A999C7CXLU" target="_blank" rel="noopener">Open the secure PayPal checkout in a new tab</a>.</p>
+            <p class="paypal-alt">
+              Having trouble seeing the button?
+              <a data-paypal-direct-link target="_blank" rel="noopener">Open the secure PayPal checkout in a new tab</a>.
+            </p>
           </div>
         </div>
         <noscript>
@@ -1438,33 +1447,43 @@
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var buttonContainer = document.querySelector("[data-paypal-button]");
-      var fallback = document.querySelector("[data-paypal-fallback]");
+    (function initPayPalCheckout() {
+      var buttonContainer = document.querySelector('[data-paypal-button]');
+      var fallback = document.querySelector('[data-paypal-fallback]');
+      var hostedButtonId = buttonContainer ? buttonContainer.dataset.paypalId : '';
 
-      if (!buttonContainer) {
+      if (!buttonContainer || !hostedButtonId) {
         return;
       }
 
-      function showFallback() {
-        if (fallback) {
+      var directLinks = document.querySelectorAll('[data-paypal-direct], [data-paypal-direct-link]');
+      var directUrl = 'https://www.paypal.com/ncp/payment/' + hostedButtonId;
+      directLinks.forEach(function (link) {
+        link.setAttribute('href', directUrl);
+      });
+
+      function showFallback(error) {
+        if (fallback && fallback.hidden) {
           fallback.hidden = false;
         }
-        buttonContainer.setAttribute("hidden", "");
+        buttonContainer.setAttribute('hidden', '');
+        if (error) {
+          console.error('PayPal hosted button failed to load.', error);
+        }
       }
 
       if (!(window.paypal && window.paypal.HostedButtons)) {
-        showFallback();
+        showFallback(new Error('PayPal SDK unavailable'));
         return;
       }
 
+      var renderTarget = buttonContainer.id ? '#' + buttonContainer.id : buttonContainer;
+
       window.paypal
-        .HostedButtons({ hostedButtonId: "XC7A999C7CXLU" })
-        .render(buttonContainer)
-        .catch(function () {
-          showFallback();
-        });
-    });
+        .HostedButtons({ hostedButtonId: hostedButtonId })
+        .render(renderTarget)
+        .catch(showFallback);
+    })();
   </script>
 
   <script>
