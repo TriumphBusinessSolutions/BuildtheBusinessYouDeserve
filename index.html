@@ -779,18 +779,19 @@
       max-width: 780px;
       margin: 0 auto 1rem;
       border-radius: 24px;
-      overflow: hidden;
       box-shadow: var(--shadow-lg);
       background: rgba(10, 20, 40, 0.82);
       border: 1px solid rgba(148, 163, 184, 0.2);
     }
-    .register iframe {
-      width: 100%;
-      min-height: 1200px;
-      border: 0;
-      border-radius: 0;
-      display: block;
-      background: #ffffff;
+    .register .paypal-buttons {
+      display: flex;
+      justify-content: center;
+      padding: clamp(1.75rem, 5vw, 2.5rem);
+    }
+    .register .paypal-buttons .paypal-loading {
+      margin: 0;
+      color: rgba(232, 240, 255, 0.7);
+      font-size: 1rem;
     }
     .register-shell {
       padding-top: 3.5rem;
@@ -1357,13 +1358,35 @@
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
         <div class="frame" role="region" aria-label="Secure checkout">
-          <script 
-            src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD">
-          </script>
+          <div id="paypal-container-XC79A99C7GXLU" class="paypal-buttons">
+            <p class="paypal-loading">Loading secure checkout…</p>
+          </div>
         </div>
       </div>
     </section>
   </main>
+
+  <script>
+    const renderPayPalHostedButton = () => {
+      const container = document.getElementById('paypal-container-XC79A99C7GXLU');
+
+      if (!container || !window.paypal?.HostedButtons) return;
+
+      container.innerHTML = '';
+
+      paypal
+        .HostedButtons({ hostedButtonId: 'XC79A99C7GXLU' })
+        .render('#paypal-container-XC79A99C7GXLU');
+    };
+
+    if (window.paypal?.HostedButtons) {
+      renderPayPalHostedButton();
+    } else if (document.readyState === 'complete') {
+      renderPayPalHostedButton();
+    } else {
+      window.addEventListener('load', renderPayPalHostedButton);
+    }
+  </script>
 
   <footer aria-label="Site footer">
     <div class="footer-inner">
