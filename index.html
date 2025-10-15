@@ -16,6 +16,11 @@
   <meta name="twitter:description" content="One-day, small-group intensive for business owners. Gain clarity, stop profit leaks, and leave with an action plan." />
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
   <link rel="preconnect" href="https://www.paypal.com" />
+  <script
+    src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"
+    crossorigin="anonymous"
+    async
+  ></script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
   <style>
@@ -1388,12 +1393,7 @@
           <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
           <p class="micro">Secure checkout • Confirmation email instantly</p>
           <div class="checkout-frame" role="region" aria-live="polite" aria-label="Secure checkout">
-            <iframe
-              src="https://www.paypal.com/ncp/payment/XC79A99C7GXLU"
-              title="PayPal secure checkout"
-              loading="lazy"
-              allowtransparency="true"
-            ></iframe>
+            <div id="paypal-container-XC79A99C7GXLU"></div>
             <p class="checkout-help">
               Having trouble? <a href="https://www.paypal.com/ncp/payment/XC79A99C7GXLU" target="_blank" rel="noopener">Open the secure PayPal checkout</a> in a new tab.
             </p>
@@ -1421,6 +1421,16 @@
     <p>Oct 23 • Only <span data-seat-pill>8</span> seats • $997</p>
     <a class="btn btn-primary cta-highlight" href="#register" data-cta="sticky">Register Now</a>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.paypal?.HostedButtons) {
+        paypal
+          .HostedButtons({ hostedButtonId: 'XC79A99C7GXLU' })
+          .render('#paypal-container-XC79A99C7GXLU');
+      }
+    });
+  </script>
 
   <script>
     const EVENT_START = new Date('2025-10-23T09:00:00-04:00');
