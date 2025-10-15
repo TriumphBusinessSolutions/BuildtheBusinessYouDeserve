@@ -16,6 +16,7 @@
   <meta name="twitter:description" content="One-day, small-group intensive for business owners. Gain clarity, stop profit leaks, and leave with an action plan." />
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
   <link rel="preconnect" href="https://www.paypal.com" />
+  <script src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
   <style>
@@ -784,6 +785,34 @@
       background: rgba(10, 20, 40, 0.82);
       border: 1px solid rgba(148, 163, 184, 0.2);
     }
+    .paypal-checkout {
+      padding: clamp(1.75rem, 4vw, 2.75rem);
+      display: grid;
+      gap: 1.25rem;
+      justify-items: center;
+      text-align: center;
+      background: rgba(2, 12, 28, 0.55);
+    }
+    .paypal-checkout h3 {
+      margin: 0;
+      color: var(--sky);
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+    }
+    .paypal-copy {
+      margin: 0;
+      color: rgba(232, 240, 255, 0.82);
+      max-width: 32ch;
+    }
+    .paypal-alt {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(232, 240, 255, 0.7);
+    }
+    .paypal-alt a {
+      color: var(--sky);
+      font-weight: 600;
+    }
     .register iframe {
       width: 100%;
       min-height: 1200px;
@@ -1357,10 +1386,16 @@
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
         <div class="frame" role="region" aria-label="Secure checkout">
-          <script 
-            src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD">
-          </script>
+          <div class="paypal-checkout">
+            <h3>Checkout with PayPal</h3>
+            <p class="paypal-copy">Tap the button below to reserve your seat. You can pay in full or select a PayPal payment plan during checkout.</p>
+            <div id="paypal-container-XC7A999C7CXLU" class="paypal-container" aria-live="polite"></div>
+            <p class="paypal-alt">Having trouble seeing the button? <a href="https://www.paypal.com/ncp/payment/XC7A999C7CXLU" target="_blank" rel="noopener">Open the secure PayPal checkout in a new tab</a>.</p>
+          </div>
         </div>
+        <noscript>
+          <p class="paypal-alt">JavaScript is required to load the secure PayPal checkout. Please enable JavaScript or email <a href="mailto:support@triumphbusinesssolutions.pro">support@triumphbusinesssolutions.pro</a> for assistance.</p>
+        </noscript>
       </div>
     </section>
   </main>
@@ -1382,6 +1417,16 @@
     <p>Oct 23 • Only <span data-seat-pill>8</span> seats • $997</p>
     <a class="btn btn-primary cta-highlight" href="#register" data-cta="sticky">Register Now</a>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.paypal && window.paypal.HostedButtons) {
+        window.paypal
+          .HostedButtons({ hostedButtonId: "XC7A999C7CXLU" })
+          .render("#paypal-container-XC7A999C7CXLU");
+      }
+    });
+  </script>
 
   <script>
     const EVENT_START = new Date('2025-10-23T09:00:00-04:00');
