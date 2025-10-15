@@ -17,7 +17,8 @@
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
   <link rel="preconnect" href="https://www.paypal.com" />
   <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD">
+    src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"
+    crossorigin="anonymous">
   </script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
@@ -789,20 +790,19 @@
     }
     .register .paypal-buttons {
       padding: clamp(1.75rem, 5vw, 2.5rem);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      display: grid;
       gap: 1rem;
+      justify-items: center;
       text-align: center;
     }
-    .register .paypal-buttons [data-paypal-stage] {
+    .register .paypal-buttons .paypal-stage {
       width: 100%;
-      display: flex;
-      justify-content: center;
+      display: grid;
+      place-items: center;
     }
-    .register .paypal-buttons [data-paypal-stage] > * {
+    .register .paypal-buttons .paypal-stage > * {
       max-width: 100%;
+      margin: 0 auto;
     }
     .register .paypal-buttons .paypal-loading {
       margin: 0;
@@ -1374,9 +1374,9 @@
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
         <div class="frame" role="region" aria-label="Secure checkout">
-          <div class="paypal-buttons" data-paypal-wrapper>
-            <div id="paypal-container-XC79A99C7GXLU" data-paypal-stage></div>
-            <p class="paypal-loading" data-paypal-loading>Loading secure checkout…</p>
+          <div class="paypal-buttons">
+            <div id="paypal-container-XC79A99C7GXLU" class="paypal-stage" aria-live="polite"></div>
+            <p class="paypal-loading" data-paypal-fallback>Loading secure checkout…</p>
           </div>
         </div>
       </div>
@@ -1385,48 +1385,54 @@
 
   <script>
     const PAYPAL_BUTTON_ID = 'XC79A99C7GXLU';
-    const paypalStage = document.querySelector('[data-paypal-stage]');
-    const paypalWrapper = document.querySelector('[data-paypal-wrapper]');
-    const paypalLoading = document.querySelector('[data-paypal-loading]');
-    const paypalSdk = document.querySelector('script[src*="paypal.com/sdk/js"]');
-    let hasRenderedPayPalButton = false;
+    const PAYPAL_CONTAINER_SELECTOR = '#paypal-container-XC79A99C7GXLU';
 
-    const hidePayPalFallback = () => {
-      if (paypalLoading) {
-        paypalLoading.hidden = true;
-      }
-      if (paypalWrapper) {
-        paypalWrapper.setAttribute('data-paypal-ready', 'true');
-      }
-    };
+    document.addEventListener('DOMContentLoaded', () => {
+      const paypalContainer = document.querySelector(PAYPAL_CONTAINER_SELECTOR);
+      const paypalFallback = document.querySelector('[data-paypal-fallback]');
 
-    const mountPayPalHostedButton = () => {
-      if (hasRenderedPayPalButton) return;
-
-      const hostedButtons = window.paypal?.HostedButtons;
-
-      if (!paypalStage || typeof hostedButtons !== 'function') {
+      if (!paypalContainer) {
         return;
       }
 
-      hasRenderedPayPalButton = true;
-      hidePayPalFallback();
+      const hidePayPalFallback = () => {
+        paypalFallback?.setAttribute('hidden', '');
+      };
 
-      hostedButtons({ hostedButtonId: PAYPAL_BUTTON_ID }).render(paypalStage);
-    };
+      const showPayPalFallback = () => {
+        paypalFallback?.removeAttribute('hidden');
+      };
 
-    const ensurePayPalHostedButton = () => {
-      if (hasRenderedPayPalButton) return;
+      const renderPayPalHostedButton = () => {
+        if (!window.paypal?.HostedButtons) {
+          return false;
+        }
 
-      if (window.paypal?.HostedButtons) {
-        mountPayPalHostedButton();
-      } else {
-        window.setTimeout(ensurePayPalHostedButton, 100);
+        window.paypal
+          .HostedButtons({ hostedButtonId: PAYPAL_BUTTON_ID })
+          .render(PAYPAL_CONTAINER_SELECTOR)
+          .then(hidePayPalFallback)
+          .catch(showPayPalFallback);
+
+        return true;
+      };
+
+      if (renderPayPalHostedButton()) {
+        return;
       }
-    };
 
-    ensurePayPalHostedButton();
-    paypalSdk?.addEventListener('load', mountPayPalHostedButton);
+      const paypalSdk = document.querySelector('script[src*="paypal.com/sdk/js"]');
+
+      paypalSdk?.addEventListener(
+        'load',
+        () => {
+          if (!renderPayPalHostedButton()) {
+            showPayPalFallback();
+          }
+        },
+        { once: true }
+      );
+    });
   </script>
 
   <footer aria-label="Site footer">
