@@ -779,69 +779,48 @@
       color: rgba(232, 240, 255, 0.7);
       margin-bottom: 1.5rem;
     }
-    .checkout {
-      position: relative;
-      padding: clamp(3rem, 8vw, 5rem) 0 clamp(4.5rem, 10vw, 6.5rem);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      isolation: isolate;
+    .register .frame {
+      width: 100%;
+      max-width: 780px;
+      margin: 0 auto 1rem;
+      border-radius: 24px;
       overflow: hidden;
-    }
-    .checkout::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at top center, rgba(250, 145, 0, 0.12), transparent 58%),
-        radial-gradient(circle at center, rgba(0, 74, 173, 0.28), transparent 68%),
-        linear-gradient(160deg, rgba(6, 14, 30, 0.96), rgba(3, 9, 22, 0.88));
-      z-index: -1;
-    }
-    .checkout .checkout-inner {
-      width: min(520px, 100%);
-      margin: 0 auto;
-      text-align: center;
-      background: linear-gradient(150deg, rgba(12, 24, 48, 0.92), rgba(12, 36, 78, 0.82));
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: 0 42px 120px rgba(3, 7, 18, 0.6);
-      border-radius: 28px;
-      padding: clamp(2rem, 5vw, 2.9rem);
+      box-shadow: var(--shadow-lg);
+      background: var(--white);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      padding: clamp(1.75rem, 5vw, 2.5rem);
       display: grid;
-      gap: 1.4rem;
-      color: var(--sky);
-      backdrop-filter: blur(14px);
+      gap: 1.5rem;
+      text-align: center;
     }
-    .checkout [data-paypal-stage] {
-      margin: 0 auto;
-      max-width: 100%;
+    .register [data-paypal-stage] {
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 68px;
+      width: 100%;
     }
-    .checkout [data-paypal-fallback] {
-      margin: 0 auto;
+    .register [data-paypal-fallback] {
+      margin: 0;
       padding: 0.85rem 1.2rem;
-      border-radius: 18px;
-      background: rgba(10, 22, 42, 0.78);
-      border: 1px solid rgba(148, 163, 184, 0.32);
-      color: rgba(232, 240, 255, 0.88);
+      border-radius: 14px;
+      background: rgba(232, 240, 255, 0.88);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--ink);
       font-size: 1.05rem;
       letter-spacing: 0.01em;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.65rem;
-      text-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
     }
-    .checkout [data-paypal-fallback]::before {
+    .register [data-paypal-fallback]::before {
       content: "";
       width: 0.9rem;
       height: 0.9rem;
       border-radius: 999px;
-      border: 2px solid rgba(232, 240, 255, 0.5);
-      border-top-color: rgba(250, 145, 0, 0.85);
+      border: 2px solid rgba(15, 26, 42, 0.2);
+      border-top-color: var(--orange);
       animation: spin 1s linear infinite;
     }
     .register-shell {
@@ -1416,14 +1395,11 @@
         <h2 id="register-heading">Reserve Your Seat</h2>
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
-        <p class="micro">Ready to move forward? Use the secure checkout below to complete your registration.</p>
-      </div>
-    </section>
-
-    <section class="checkout" aria-label="Secure checkout">
-      <div class="checkout-inner" role="region" aria-live="polite">
-        <div id="paypal-container-XC79A99C7GXLU" data-paypal-stage></div>
-        <p data-paypal-fallback>Loading secure checkout…</p>
+        <div class="frame" role="region" aria-live="polite" aria-label="Secure checkout">
+          <div id="paypal-container-XC79A99C7GXLU" data-paypal-stage></div>
+          <p data-paypal-fallback>Loading secure checkout…</p>
+        </div>
+        <p class="micro" style="margin-bottom: 0;">Ready to move forward? Use the secure checkout above to complete your registration.</p>
       </div>
     </section>
   </main>
