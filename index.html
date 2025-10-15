@@ -16,10 +16,6 @@
   <meta name="twitter:description" content="One-day, small-group intensive for business owners. Gain clarity, stop profit leaks, and leave with an action plan." />
   <meta name="twitter:image" content="https://example.com/og-image.jpg" />
   <link rel="preconnect" href="https://www.paypal.com" />
-  <script
-    src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"
-    crossorigin="anonymous">
-  </script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
   <style>
@@ -813,17 +809,22 @@
       gap: 1rem;
       text-align: center;
     }
-    .checkout-frame [data-paypal-stage] {
-      min-height: 68px;
+    .checkout-frame iframe {
       width: 100%;
-      display: grid;
-      place-items: center;
+      min-height: 620px;
+      border: 0;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: inset 0 0 0 1px rgba(15, 26, 42, 0.08);
     }
-    .checkout-frame [data-paypal-fallback] {
+    .checkout-frame .checkout-help {
       margin: 0;
       color: rgba(15, 26, 42, 0.65);
       font-weight: 600;
       letter-spacing: 0.01em;
+    }
+    .checkout-frame .checkout-help a {
+      color: var(--blue);
     }
     footer {
       background: rgba(5, 11, 22, 0.92);
@@ -1387,66 +1388,21 @@
           <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
           <p class="micro">Secure checkout • Confirmation email instantly</p>
           <div class="checkout-frame" role="region" aria-live="polite" aria-label="Secure checkout">
-            <div id="paypal-container-XC79A99C7GXLU" data-paypal-stage></div>
-            <p data-paypal-fallback>Loading secure checkout…</p>
+            <iframe
+              src="https://www.paypal.com/ncp/payment/XC79A99C7GXLU"
+              title="PayPal secure checkout"
+              loading="lazy"
+              allowtransparency="true"
+            ></iframe>
+            <p class="checkout-help">
+              Having trouble? <a href="https://www.paypal.com/ncp/payment/XC79A99C7GXLU" target="_blank" rel="noopener">Open the secure PayPal checkout</a> in a new tab.
+            </p>
           </div>
           <p class="micro" style="margin-bottom: 0;">Ready to move forward? Use the secure checkout above to complete your registration.</p>
         </div>
       </div>
     </section>
   </main>
-
-  <script>
-    const PAYPAL_BUTTON_ID = 'XC79A99C7GXLU';
-    const PAYPAL_CONTAINER_SELECTOR = '#paypal-container-XC79A99C7GXLU';
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const paypalContainer = document.querySelector(PAYPAL_CONTAINER_SELECTOR);
-      const paypalFallback = document.querySelector('[data-paypal-fallback]');
-
-      if (!paypalContainer) {
-        return;
-      }
-
-      const hidePayPalFallback = () => {
-        paypalFallback?.setAttribute('hidden', '');
-      };
-
-      const showPayPalFallback = () => {
-        paypalFallback?.removeAttribute('hidden');
-      };
-
-      const renderPayPalHostedButton = () => {
-        if (!window.paypal?.HostedButtons) {
-          return false;
-        }
-
-        window.paypal
-          .HostedButtons({ hostedButtonId: PAYPAL_BUTTON_ID })
-          .render(PAYPAL_CONTAINER_SELECTOR)
-          .then(hidePayPalFallback)
-          .catch(showPayPalFallback);
-
-        return true;
-      };
-
-      if (renderPayPalHostedButton()) {
-        return;
-      }
-
-      const paypalSdk = document.querySelector('script[src*="paypal.com/sdk/js"]');
-
-      paypalSdk?.addEventListener(
-        'load',
-        () => {
-          if (!renderPayPalHostedButton()) {
-            showPayPalFallback();
-          }
-        },
-        { once: true }
-      );
-    });
-  </script>
 
   <footer aria-label="Site footer">
     <div class="footer-inner">
