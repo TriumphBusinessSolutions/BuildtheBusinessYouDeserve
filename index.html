@@ -18,6 +18,8 @@
   <link rel="preconnect" href="https://www.paypal.com" />
   <script
     src="https://www.paypal.com/sdk/js?client-id=BAAlzQkr1luPvDKq4oY1XUoyk-u3Wwe8xXXlglYEFlQ6iiHQA3MSQVCn6Dmp2-dOe0FAyfd3tIQbl5oDOk&components=hosted-buttons&enable-funding=venmo&currency=USD"
+    crossorigin="anonymous"
+    async
   ></script>
   <!-- GA4: G-XXXXXXX -->
   <!-- Meta Pixel: 000000000000000 -->
@@ -1449,7 +1451,7 @@
   </div>
 
   <script>
-    (function initPayPalCheckout() {
+    document.addEventListener('DOMContentLoaded', function () {
       var buttonContainer = document.querySelector('[data-paypal-button]');
       var fallback = document.querySelector('[data-paypal-fallback]');
       var hostedButtonId = buttonContainer ? buttonContainer.dataset.paypalId : '';
@@ -1474,18 +1476,35 @@
         }
       }
 
-      if (!(window.paypal && window.paypal.HostedButtons)) {
-        showFallback(new Error('PayPal SDK unavailable'));
+      function renderHostedButton() {
+        if (!(window.paypal && window.paypal.HostedButtons)) {
+          showFallback(new Error('PayPal SDK unavailable'));
+          return;
+        }
+
+        var renderTarget = buttonContainer.id ? '#' + buttonContainer.id : buttonContainer;
+
+        window.paypal
+          .HostedButtons({ hostedButtonId: hostedButtonId })
+          .render(renderTarget)
+          .catch(showFallback);
+      }
+
+      if (window.paypal && window.paypal.HostedButtons) {
+        renderHostedButton();
         return;
       }
 
-      var renderTarget = buttonContainer.id ? '#' + buttonContainer.id : buttonContainer;
-
-      window.paypal
-        .HostedButtons({ hostedButtonId: hostedButtonId })
-        .render(renderTarget)
-        .catch(showFallback);
-    })();
+      var sdkScript = document.querySelector('script[src*="www.paypal.com/sdk/js"]');
+      if (sdkScript) {
+        sdkScript.addEventListener('load', renderHostedButton, { once: true });
+        sdkScript.addEventListener('error', function (event) {
+          showFallback(event);
+        });
+      } else {
+        showFallback(new Error('PayPal SDK script not found on page.'));
+      }
+    });
   </script>
 
   <script>
