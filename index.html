@@ -809,6 +809,21 @@
       gap: 1.25rem;
       text-align: center;
     }
+    .checkout-instructions {
+      background: rgba(15, 26, 42, 0.06);
+      border-radius: 16px;
+      padding: 1.1rem 1.3rem;
+      text-align: left;
+      color: rgba(15, 26, 42, 0.78);
+    }
+    .checkout-instructions strong {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: var(--blue);
+    }
+    .checkout-instructions p {
+      margin: 0;
+    }
     .checkout-frame .checkout-button {
       justify-self: center;
       min-width: min(420px, 100%);
@@ -1385,7 +1400,7 @@
           <p class="micro">Secure checkout • Confirmation email instantly</p>
           <div class="checkout-frame" role="region" aria-live="polite" aria-label="Secure checkout">
             <p class="checkout-help" style="font-weight: 500;">
-              PayPal blocks this checkout from loading inside the page, so use the secure button below to complete your registration in a new tab.
+              PayPal blocks this checkout from loading inside the page, so we open their secure form in a new tab to keep the experience reliable.
             </p>
             <a
               class="btn btn-primary cta-highlight checkout-button"
@@ -1396,6 +1411,12 @@
             >
               Open Secure PayPal Checkout
             </a>
+            <div class="checkout-instructions" role="note">
+              <strong>Want to embed it instead?</strong>
+              <p>
+                You only need the HTML snippet PayPal provides—no React or extra tooling required. Once PayPal enables embedded checkout for your account, paste their embed code in this spot and it will render inside the page.
+              </p>
+            </div>
             <p class="checkout-help">
               Having trouble? Copy and paste this link into your browser: <a href="https://www.paypal.com/ncp/payment/XC79A99C7GXLU" target="_blank" rel="noopener">https://www.paypal.com/ncp/payment/XC79A99C7GXLU</a>
             </p>
