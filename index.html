@@ -813,6 +813,16 @@
       color: var(--sky);
       font-weight: 600;
     }
+    .paypal-fallback {
+      display: grid;
+      gap: 0.5rem;
+      justify-items: center;
+      text-align: center;
+      background: rgba(5, 14, 32, 0.6);
+      border-radius: 18px;
+      padding: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+    }
     .register iframe {
       width: 100%;
       min-height: 1200px;
@@ -1389,7 +1399,16 @@
           <div class="paypal-checkout">
             <h3>Checkout with PayPal</h3>
             <p class="paypal-copy">Tap the button below to reserve your seat. You can pay in full or select a PayPal payment plan during checkout.</p>
-            <div id="paypal-container-XC7A999C7CXLU" class="paypal-container" aria-live="polite"></div>
+            <div id="paypal-container-XC7A999C7CXLU" class="paypal-container" aria-live="polite" data-paypal-button></div>
+            <div class="paypal-fallback" data-paypal-fallback hidden>
+              <p>We couldn’t load the secure PayPal button in this browser.</p>
+              <p>
+                <a class="btn btn-primary" href="https://www.paypal.com/ncp/payment/XC7A999C7CXLU" target="_blank" rel="noopener">
+                  Open the PayPal checkout
+                </a>
+              </p>
+              <p class="paypal-alt">If you still see an error, email <a href="mailto:support@triumphbusinesssolutions.pro">support@triumphbusinesssolutions.pro</a> for help getting registered.</p>
+            </div>
             <p class="paypal-alt">Having trouble seeing the button? <a href="https://www.paypal.com/ncp/payment/XC7A999C7CXLU" target="_blank" rel="noopener">Open the secure PayPal checkout in a new tab</a>.</p>
           </div>
         </div>
@@ -1420,11 +1439,31 @@
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      if (window.paypal && window.paypal.HostedButtons) {
-        window.paypal
-          .HostedButtons({ hostedButtonId: "XC7A999C7CXLU" })
-          .render("#paypal-container-XC7A999C7CXLU");
+      var buttonContainer = document.querySelector("[data-paypal-button]");
+      var fallback = document.querySelector("[data-paypal-fallback]");
+
+      if (!buttonContainer) {
+        return;
       }
+
+      function showFallback() {
+        if (fallback) {
+          fallback.hidden = false;
+        }
+        buttonContainer.setAttribute("hidden", "");
+      }
+
+      if (!(window.paypal && window.paypal.HostedButtons)) {
+        showFallback();
+        return;
+      }
+
+      window.paypal
+        .HostedButtons({ hostedButtonId: "XC7A999C7CXLU" })
+        .render(buttonContainer)
+        .catch(function () {
+          showFallback();
+        });
     });
   </script>
 
