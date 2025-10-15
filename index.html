@@ -779,34 +779,26 @@
       color: rgba(232, 240, 255, 0.7);
       margin-bottom: 1.5rem;
     }
-    .register .frame {
-      width: 100%;
-      max-width: 780px;
-      margin: 0 auto 1rem;
-      border-radius: 24px;
-      box-shadow: var(--shadow-lg);
+    .checkout {
+      padding: clamp(3rem, 8vw, 5rem) 0 clamp(4.5rem, 10vw, 6.5rem);
+    }
+    .checkout .checkout-inner {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      text-align: center;
       background: rgba(10, 20, 40, 0.82);
       border: 1px solid rgba(148, 163, 184, 0.2);
-    }
-    .register .paypal-buttons {
+      box-shadow: var(--shadow-lg);
+      border-radius: 24px;
       padding: clamp(1.75rem, 5vw, 2.5rem);
-      display: grid;
-      gap: 1rem;
-      justify-items: center;
-      text-align: center;
     }
-    .register .paypal-buttons .paypal-stage {
-      width: 100%;
-      display: grid;
-      place-items: center;
-    }
-    .register .paypal-buttons .paypal-stage > * {
-      max-width: 100%;
+    .checkout [data-paypal-stage] {
       margin: 0 auto;
+      max-width: 100%;
     }
-    .register .paypal-buttons .paypal-loading {
-      margin: 0;
-      color: rgba(232, 240, 255, 0.7);
+    .checkout [data-paypal-fallback] {
+      margin-top: 1.1rem;
+      color: rgba(232, 240, 255, 0.72);
       font-size: 1rem;
     }
     .register-shell {
@@ -1373,12 +1365,14 @@
         <h2 id="register-heading">Reserve Your Seat</h2>
         <p class="sub">Only 8 seats — Investment: <strong>$997</strong></p>
         <p class="micro">Secure checkout • Confirmation email instantly</p>
-        <div class="frame" role="region" aria-label="Secure checkout">
-          <div class="paypal-buttons">
-            <div id="paypal-container-XC79A99C7GXLU" class="paypal-stage" aria-live="polite"></div>
-            <p class="paypal-loading" data-paypal-fallback>Loading secure checkout…</p>
-          </div>
-        </div>
+        <p class="micro">Ready to move forward? Use the secure checkout below to complete your registration.</p>
+      </div>
+    </section>
+
+    <section class="checkout" aria-label="Secure checkout">
+      <div class="checkout-inner" role="region" aria-live="polite">
+        <div id="paypal-container-XC79A99C7GXLU" data-paypal-stage></div>
+        <p data-paypal-fallback>Loading secure checkout…</p>
       </div>
     </section>
   </main>
