@@ -950,7 +950,7 @@
     }
     @media (max-width: 768px) {
       .container {
-        padding: 4rem 0;
+        padding: clamp(3.5rem, 8vw, 4rem) clamp(1.25rem, 6vw, 2rem);
       }
       .hero-ctas {
         width: 100%;
@@ -973,6 +973,48 @@
       }
     }
     @media (max-width: 640px) {
+      .surface {
+        border-radius: 24px;
+      }
+      .surface::after {
+        border-radius: 23px;
+      }
+      .hero {
+        gap: 2.25rem;
+        align-items: stretch;
+      }
+      .hero-content {
+        align-items: flex-start;
+        text-align: left;
+        gap: 1.5rem;
+      }
+      .hero-title {
+        font-size: clamp(2.4rem, 9vw, 3rem);
+        text-align: left;
+        align-self: stretch;
+      }
+      .hero-sub,
+      .hero-trust {
+        text-align: left;
+      }
+      .badge-row {
+        justify-content: flex-start;
+      }
+      .hero-ctas {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+      }
+      .hero-ctas .btn {
+        flex: 1 1 auto;
+        width: 100%;
+      }
+      .surface p,
+      .register p,
+      footer p {
+        text-align: left;
+      }
       .details-countdown {
         flex-direction: column;
         align-items: stretch;
