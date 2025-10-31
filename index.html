@@ -211,6 +211,13 @@
       color: var(--accent);
       min-width: 90px;
     }
+    .timeline-list {
+      margin: 0.4rem 0 0;
+      padding-left: 1.2rem;
+      display: grid;
+      gap: 0.35rem;
+      color: var(--slate);
+    }
     .hosts {
       display: grid;
       gap: 1.5rem;
@@ -223,6 +230,13 @@
       background: linear-gradient(145deg, #ffffff, #f1f5ff);
       display: grid;
       gap: 0.75rem;
+    }
+    .host-photo {
+      width: 100%;
+      border-radius: calc(var(--radius) - 4px);
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
+      border: 1px solid rgba(15, 23, 42, 0.08);
     }
     .host-name {
       font-size: 1.2rem;
@@ -296,16 +310,16 @@
 <body>
   <main class="page-shell">
     <section class="hero" aria-labelledby="hero-title">
-      <span class="hero-kicker">Half-Day Reset • November 19</span>
-      <h1 id="hero-title">Own 2026 with a cash-smart business reset.</h1>
-      <p>A focused morning with Joe Farago and Dave Worden to stop the revenue leak, simplify Profit First, and build a 90-day action plan you can trust.</p>
+      <span class="hero-kicker">Clarity &amp; Growth Intensive • November 19</span>
+      <h1 id="hero-title">From overwhelmed to in control—before 2026 even starts.</h1>
+      <p>A four-hour, hands-on reset with Joe Farago and Dave Worden to rebuild your Profit First cash system, lock in growth plays, and leave with a focused 90-day plan.</p>
       <div class="hero-details">
         <div class="detail-card">
-          8:00 AM check-in
+          8:30 AM check-in
           <span>Light breakfast + networking</span>
         </div>
         <div class="detail-card">
-          8:30 AM – 12:30 PM
+          9:00 AM – 12:30 PM
           <span>North Ridgeville, OH</span>
         </div>
         <div class="detail-card">
@@ -352,38 +366,69 @@
       </div>
       <div class="timeline">
         <div class="timeline-item">
-          <div class="timeline-time">8:00</div>
-          <div>
-            <strong>Doors open + breakfast</strong>
-            <p>Arrive, settle in, and connect with the other owners at the table.</p>
-          </div>
-        </div>
-        <div class="timeline-item">
           <div class="timeline-time">8:30</div>
           <div>
-            <strong>Profit First in practice</strong>
-            <p>Rebuild your allocation plan so the money you earn actually stays.</p>
+            <strong>Check-in &amp; light breakfast</strong>
+            <p>Doors open at 8:30 AM so you can grab coffee, meet the other owners, and get settled.</p>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">9:45</div>
+          <div class="timeline-time">9:00</div>
           <div>
-            <strong>Revenue model mapping</strong>
-            <p>See your offers, pricing, and capacity on one clear page.</p>
+            <strong>Welcome &amp; introductions</strong>
+            <p>Frame the morning through two lenses—financial clarity and growth strategy.</p>
+            <ul class="timeline-list">
+              <li>Get grounded in why cash beats sales every time.</li>
+              <li>Quick attendee intros so every business in the room has context.</li>
+            </ul>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">11:00</div>
+          <div class="timeline-time">9:15</div>
           <div>
-            <strong>5 ways to lift profit</strong>
-            <p>Choose the plays that will move the needle fastest in Q1.</p>
+            <strong>Session 1 — Triumph: Profit First Systems (60 min)</strong>
+            <p>Stop the cash chaos with a Profit First plan that’s built for your numbers.</p>
+            <ul class="timeline-list">
+              <li>Unpack the 5 Core Accounts and target allocations for owners.</li>
+              <li>Calculate Real Revenue and Owner’s Pay on the spot.</li>
+              <li>Hands-on assessment to surface cash leaks and rollout steps.</li>
+            </ul>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">12:00</div>
+          <div class="timeline-time">10:15</div>
           <div>
-            <strong>Launch plan + next steps</strong>
-            <p>Lock in your 90-day roadmap and credit toward The Owner’s Advantage Program.</p>
+            <strong>Session 2 — ActionCOACH: Strategy &amp; Growth (90 min)</strong>
+            <p>Line up the plays that will lift profit and capacity going into 2026.</p>
+            <ul class="timeline-list">
+              <li>Mindset reset &amp; Rules of the Game to keep momentum.</li>
+              <li>Work through the 6 Steps scorecard and 5 Ways profit levers.</li>
+              <li>Use the Green Sheet and time tools to reclaim your calendar.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:45</div>
+          <div>
+            <strong>Session 3 — Triumph: Business Money Models (45 min)</strong>
+            <p>Design the first phase of your money system so growth feels inevitable.</p>
+            <ul class="timeline-list">
+              <li>Understand the 3 Phases from Awareness to Scale.</li>
+              <li>Map Phase 1 offers, nurture paths, and first upsells.</li>
+              <li>Draft the revenue engine that keeps cash flowing forward.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:30</div>
+          <div>
+            <strong>Wrap-up &amp; next steps (15 min)</strong>
+            <p>Capture the momentum and chart what happens after the workshop.</p>
+            <ul class="timeline-list">
+              <li>Recap the Profit First, Strategy, and Money Model takeaways.</li>
+              <li>Get Joe’s free Business Diagnostic and your rollout checklist.</li>
+              <li>See how the Owner’s Advantage Program carries the work forward.</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -396,11 +441,23 @@
       </div>
       <div class="hosts">
         <article class="host-card">
+          <img
+            class="host-photo"
+            src="https://storage.googleapis.com/msgsndr/TANiDRdtEe5RXuoDL25H/media/687f7d89bf6969483915197e.png"
+            alt="Portrait of Dave Worden"
+            loading="lazy"
+          />
           <div class="host-role">Profit First Mastery</div>
           <div class="host-name">Dave Worden</div>
-          <p>Founder of Triumph Business Solutions. Known for turning messy financials into simple, repeatable systems that owners actually use.</p>
+          <p>Founder of Triumph Business Solutions. Known for turning messy financials into simple, repeatable systems owners actually use.</p>
         </article>
         <article class="host-card">
+          <img
+            class="host-photo"
+            src="https://storage.googleapis.com/msgsndr/TANiDRdtEe5RXuoDL25H/media/68e51661bb29150ee473a00f.jpeg"
+            alt="Portrait of Joe Farago"
+            loading="lazy"
+          />
           <div class="host-role">Growth Architecture</div>
           <div class="host-name">Joe Farago</div>
           <p>ActionCOACH North Ridgeville. Veteran operator and strategist who helps teams scale without burning through their sanity.</p>
@@ -451,7 +508,8 @@
       "@context": "https://schema.org",
       "@type": "Event",
       "name": "2026 Business Reset Workshop",
-      "startDate": "2025-11-19T08:30:00-05:00",
+      "startDate": "2025-11-19T09:00:00-05:00",
+      "doorTime": "2025-11-19T08:30:00-05:00",
       "endDate": "2025-11-19T12:30:00-05:00",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "eventStatus": "https://schema.org/EventScheduled",
